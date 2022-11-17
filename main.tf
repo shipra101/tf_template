@@ -10,21 +10,36 @@ terraform {
 provider "ibm" {
 }
 
-variable "resource_group_id" {
-  description = "ID of the resource group."
+variable "sleepy_time" {
+  description = "time"
   type        = string
 }
 
+resource "null_resource" "sleep" {
+  triggers = {
+    uuid = uuid()
+  }
 
-resource "ibm_resource_instance" "cos_instance" {
-  name              = "demo-cos"
-  service           = "cloud-object-storage"
-  plan              = "standard"
-  location          = "global"
-  resource_group_id = var.resource_group_id
-  tags = ["t1", "t2"]
-
+  provisioner "local-exec" {
+    command = "sleep ${var.sleepy_time}"
+  }
 }
+
+# variable "resource_group_id" {
+#   description = "ID of the resource group."
+#   type        = string
+# }
+
+
+# resource "ibm_resource_instance" "cos_instance" {
+#   name              = "demo-cos"
+#   service           = "cloud-object-storage"
+#   plan              = "standard"
+#   location          = "global"
+#   resource_group_id = var.resource_group_id
+#   tags = ["t1", "t2"]
+
+# }
 
 
 # module "resource_group" {
