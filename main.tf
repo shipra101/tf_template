@@ -12,7 +12,7 @@ provider "ibm" {
 
 variable "sleepy_time" {
   description = "time"
-  type        = string
+  default     = 0
 }
 
 resource "null_resource" "sleep" {
