@@ -10,46 +10,39 @@ terraform {
 provider "ibm" {
 }
 
-variable "sleepy_time" {
-  description = "time"
-  default     = 0
+variable "resource_group_id" {
+ # default     = "15a5b53ee3ec4657a311fd8c0392f875"  
+#  default     = "56de8e51593d4c65802e038ce18d9e03" stage
+   default = "6cb9be27fe74437bae3afeef1356e796"
+  description = "ID of the resource group."
+  type        = string
 }
 
-resource "null_resource" "sleep" {
-  triggers = {
-    uuid = uuid()
-  }
-
-  provisioner "local-exec" {
-    command = "sleep ${var.sleepy_time}"
-  }
+variable "plan" {
+  description = "plan"
+  type        = string
+  default     = "lite"
+# default     = "standard" 
 }
 
-# variable "resource_group_id" {
-#   description = "ID of the resource group."
-#   type        = string
-# }
+
 
 
 # resource "ibm_resource_instance" "cos_instance" {
 #   name              = "demo-cos"
 #   service           = "cloud-object-storage"
-#   plan              = "standard"
+#   plan = var.plan
 #   location          = "global"
 #   resource_group_id = var.resource_group_id
 #   tags = ["t1", "t2"]
 
 # }
 
+resource "ibm_cloudant" "cloudant" {
+  name     = "agent_cloudant"
+  location = "eu-gb"
+  plan = var.plan
+  resource_group_id = var.resource_group_id
+}
 
-# module "resource_group" {
-  
-#   source = "terraform-ibm-modules/resource-management/ibm//modules/resource-group"
 
-#   provision = var.provision
-#   name      = var.name
-# }
-
-# resource "ibm_resource_group" "resourceGroup" {
-#   name     = "prod"
-# }
