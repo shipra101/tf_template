@@ -8,12 +8,11 @@ terraform {
  }
 
 provider "ibm" {
+      ibmcloud_api_key = var.apikey
 }
 
 variable "resource_group_id" {
- # default     = "15a5b53ee3ec4657a311fd8c0392f875"  
-#  default     = "56de8e51593d4c65802e038ce18d9e03" stage
-   default = "6cb9be27fe74437bae3afeef1356e796"
+  default = "6cb9be27fe74437bae3afeef1356e796"
   description = "ID of the resource group."
   type        = string
 }
@@ -22,11 +21,13 @@ variable "plan" {
   description = "plan"
   type        = string
   default     = "lite"
-# default     = "standard" 
 }
 
-
-
+variable "apikey" {
+  description = "apikey"
+  type        = string
+  default     = ""
+}
 
 # resource "ibm_resource_instance" "cos_instance" {
 #   name              = "demo-cos"
