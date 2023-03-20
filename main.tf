@@ -40,7 +40,7 @@ variable "apikey" {
 # }
 
 resource "ibm_cloudant" "cloudant" {
-  name     = "demo2-cloudant"
+  name     = "demo3-cloudant"
   location = "eu-gb"
   plan = var.plan
   resource_group_id = var.resource_group_id
