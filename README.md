@@ -1,1 +1,1 @@
-# tf_template
+# iac cloudant template
