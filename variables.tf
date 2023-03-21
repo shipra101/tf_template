@@ -6,7 +6,7 @@ variable "resource_group" {
 variable "ibm_region" {
   description = "IBM Cloud region where all resources will be deployed"
   type        = string
-  default     = "us-south"
+  default     = "us-east"
 }
 
 variable "plan" {
@@ -16,6 +16,6 @@ variable "plan" {
 }
 
 variable "ibmcloud_api_key" {
-  description = "api key used to access IBM Cloud"
+  description = "api key used to access IBM Cloud Account"
   type        = string
 }
